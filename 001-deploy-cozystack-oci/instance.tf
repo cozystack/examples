@@ -42,4 +42,10 @@ resource "oci_core_vnic_attachment" "dev" {
   create_vnic_details {
     vlan_id = module.vcn.vlans.vlan1.id
   }
+
+  lifecycle {
+    ignore_changes = [
+      create_vnic_details[0].nsg_ids
+    ]
+  }
 }
